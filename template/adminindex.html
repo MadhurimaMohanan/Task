@@ -1,0 +1,72 @@
+{% extends 'header2.html' %}
+{% block content %}
+    <!--//main-content-->
+    <!---->
+ 
+    <!---->
+    <!--// mian-content -->
+    <!-- banner -->
+<style>
+    .col-aligncenter{float: none;margin: 0 auto;}
+</style>
+    <section class="ab-info-main py-5">
+        <div class="container py-3">
+            <h3 class="tittle text-center"><span class="sub-tittle"></span></h3>
+            <div class="row contact-main-info mt-5">
+                <div class="col-md-6 col-aligncenter contact-right-content">
+                      
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                  <th>Id</th>
+                                  <th>Dressname</th>
+                                  <th>total</th>
+                                  
+                                  <th>Processing</th>
+                                  <th>Approved</th>
+                                  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for x in query %}
+                                <tr>
+                                  <td style="display:none">{{x.id}}</td>
+                                  <th scope="row">{{forloop.counter}}</th>
+                                  <td>{{x.dressname}}</td>
+                                  <td>{{x.total}}</td>
+                                  
+                                  <td>    
+                                    <form action="/update/" method="post">
+                                      {% csrf_token %} 
+                                      <input type="hidden" value="{{x.id}}" name="userid">
+                                      <input type="hidden" value="{{x.status1}}" name="status1">
+                                      <input type="hidden" value="{{x.dressname}}" name="dressname">
+                                    <input type="submit"style="background-color: black; color:white;width:140px" value="processing">
+                                  </form>
+                                </td>
+                                  <td>
+                                    <form action="/deliver/" method="post">
+                                      {% csrf_token %} 
+                                      <input type="hidden" value="{{x.id}}" name="userid">
+                                      <input type="hidden" value="{{x.status1}}" name="status1">
+                                      <input type="hidden" value="{{x.dressname}}" name="dressname">
+                                       <input type="submit"style="background-color: black; color:white;width:140px" value="delivered">
+                                  </form>
+                                  </td>
+                                 
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+            <!--     <div class="col-md-6 contact-left-content">
+                   <p><span class="fa fa-quote-left"></span> “When words become unclear, I shall focus with photographs. When images become inadequate, I shall be content with silence. <span class="fa fa-quote-right"></span></p>
+                    
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- //contact -->
+{% endblock %}

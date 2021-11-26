@@ -1,0 +1,81 @@
+{% extends 'header1.html' %}
+{% block content %}
+    <!--//main-content-->
+    <!---->
+ 
+    <!---->
+    <!--// mian-content -->
+    <!-- banner -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script   type="text/javascript">
+   function disp()
+   {
+    
+    if (document.getElementById('online').checked)
+    {
+      $("#anum").show();
+       $("#cvv").show();
+    }
+    else if(document.getElementById('delivery').checked)
+    {
+        $("#anum").hide();
+        $("#cvv").hide();
+    }
+    else
+    {
+        $("#anum").hide();
+        $("#cvv").hide(); 
+    }
+   }
+
+   </script>
+    <section class="ab-info-main py-5">
+        <div class="container py-3">
+            <h3 class="tittle text-center"><span class="sub-tittle"></span> </h3>
+            <div class="row contact-main-info mt-5">
+                <div class="col-md-6 contact-right-content" >
+                    <form  action="/updatequan/" method="post" align="center">
+                         {% csrf_token %}
+                        <p>{{msg}}</p>
+                        {% for x in query %}
+                         <input type="hidden" name="dname" value="{{x.id}}" placeholder="name" required="">
+                         DressName:<input type="text" name="dressname" value="{{x.dressname}}" placeholder="name" required="">
+                        Price:<input type="text"  name="price" value="{{x.price}}"placeholder="email" required="">
+                        Quantity:<input type="text"  name="quantity" value="{{x.quantity}}" placeholder="quantity" required="">
+
+                        <!-- Location:<input type="text"  name="location" value="" placeholder="location" required=""> -->
+
+                        <!-- PhoneNumber:<input type="text" name="phno" placeholder="PhoneNumber" required=""> -->
+
+                     <!--    Payment:<br><input type="radio" name="payment" id="delivery" value="Cash On Delivery" onchange="disp()" >Cash On Delivery
+                                <br><input type="radio" name="payment" id="online" value="Online Payment" onchange="disp()">Online Payment
+
+
+
+                                <input type="text"  name="anum" id="anum" value="" placeholder="AccountNumber" style="display:none;">
+                                <input type="text"  name="cvv" id="cvv" value="" placeholder="CVV"  style="display:none;">
+                        
+                        <input type="hidden" name="status1" value="pending" placeholder="status" required=""> -->
+                        <input type="hidden" name="status" value="0" placeholder="status" required="">
+                       
+                        <div class="read mt-3">
+                            <input type="submit" value="update" style="background-color: black; color:white;width:140px">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6 contact-left2-content">
+                   
+                     
+                        <img src="{{x.drsid.image.url}}" class="img-fluid" alt="" width="500">
+                        <h1 style="text-align: center">{{x.dressname}}</h1><h3 style="text-align: center">Rs:{{x.price}}</h3><h3 style="text-align: center">{{x.cloth}} material</h3>
+                    
+                     
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    <!-- //contact -->
+{% endblock %}

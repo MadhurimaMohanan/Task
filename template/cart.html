@@ -1,0 +1,62 @@
+{% extends 'header1.html' %}
+{% block content %}
+    <!--//main-content-->
+    <!---->
+ 
+    <!---->
+    <!--// mian-content -->
+    <!-- banner -->
+<style>
+    .col-aligncenter{float: none;margin: 0 auto;}
+</style>
+    <section class="ab-info-main py-5">
+        <div class="container py-3">
+            <h3 class="tittle text-center"><span class="sub-tittle"></span>CART</h3>
+            
+            <div class="row contact-main-info mt-5">
+                <div class="col-md-6 col-aligncenter contact-right-content">
+                      
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                  <th>Id</th>
+                                  <th>Dressname</th>
+                                  <th>image</th>
+                                  
+                                  
+                                  <th>booknow</th>
+                                  <th>delete</th>
+                                  <th>Update Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for x in query %}
+                                <tr>
+                                  <td style="display:none">{{x.id}}</td>
+                                  <th scope="row">{{forloop.counter}}</th>
+                                  <td>{{x.dressname}}</td>
+                                  
+                                  <td><img src="{{x.drsid.image.url}}" class="img-fluid" alt="" width="100"></td>
+                                  <td><a href="/cartbook/?id={{x.id}}">BookNow</a></td>
+                                  <td>
+                                    <a href="/cartdelete/?id={{x.id}}">Delete</a>
+                                  </td>
+                                    <td>
+                                    <a href="/cartupdate/?id={{x.id}}">Update</a>
+                                  </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+            <!--     <div class="col-md-6 contact-left-content">
+                   <p><span class="fa fa-quote-left"></span> “When words become unclear, I shall focus with photographs. When images become inadequate, I shall be content with silence. <span class="fa fa-quote-right"></span></p>
+                    
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- //contact -->
+{% endblock %}

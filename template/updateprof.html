@@ -1,0 +1,48 @@
+{% extends 'header.html' %}
+{% block content %}
+    <!--//main-content-->
+    <!---->
+ 
+    <!---->
+    <!--// mian-content -->
+    <!-- banner -->
+    <style>
+    .col-aligncenter{float: none;margin: 0 auto;}
+</style>
+    <section class="ab-info-main py-5">
+        <div class="container py-3">
+            <h3 class="tittle text-center"><span class="sub-tittle"></span>Registration</h3>
+            <div class="row contact-main-info mt-5">
+                <div class=" col-md-6 col-aligncenter contact-right-content" >
+                    <form  action="/updateprof/" method="post" align="center">
+                        {% csrf_token %}
+                        
+                        <p>{{msg}}</p>
+                        {% for x in query %}
+                        <input type="hidden" name="userid" placeholder="name" value="{{x.id}}" required="">
+                        <input type="text"  name="name" placeholder="name" value="{{x.name}}" required="">
+                        <input type="email"  name="email" placeholder="email" value="{{x.email}}" required="">
+
+                        <input type="password"  name="passwd" placeholder="password" value="{{x.passwd}}" required="">
+                        
+                        <input type="text"  name="phno" placeholder="phonenumber" value="{{x.phno}}" required="">
+
+                        <div class="read mt-3">
+                            <input type="submit" style="background-color: black; color:white;width:140px" value="Update">
+                        </div>
+                        {% endfor %}
+                    </form>
+                    <div class="read mt-3">
+                    <!-- <a href="/">Click here to Login</a>  -->
+                </div>
+                </div>
+            <!--     <div class="col-md-6 contact-left-content">
+                     <p><span class="fa fa-quote-left"></span> “When words become unclear, I shall focus with photographs. When images become inadequate, I shall be content with silence. <span class="fa fa-quote-right"></span></p>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- //contact -->
+{% endblock %}
